@@ -47,7 +47,6 @@
     // Add a group of routes
     Spine.Route.add({
       "/groups/:id": function(id){
-        console.log('groups id', id)
       }
     });
     
@@ -55,7 +54,6 @@
     
     // Use your own regex
     Spine.Route.add(/\/groups(\/)?/, function(){
-      console.log('groups')
     });
   </script>
 
@@ -241,6 +239,6 @@ jQuery(function($){
 	    </div>
 	  </div>
 	
-
+http://jsfiddle.net/addyosmani/nn7U6/2/
 </body>
 </html>
