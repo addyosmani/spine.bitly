@@ -16,11 +16,11 @@
   <script type="text/javascript" charset="utf-8">
     var Users = Spine.Controller.create({
       init: function(){
-        this.navigate("/step", '1');  
+        this.navigate("/ui", 'dashboard');  
       },
       
-      active: function(number){
-        console.log("active", number)  
+      active: function(viewName){
+        console.log("active", viewName)  
       }
     });
     
@@ -32,11 +32,10 @@
       init: function(){
         this.users = Users.init();
         this.routes({
-          "/step/:number": function(num){
-            this.users.active(num);
+          "/ui/:viewName": function(viewName){
+            this.users.active(viewName);
           },
           "/step/*glob": function(any){
-            console.log('any', any);
           }
         });
       }
@@ -94,7 +93,8 @@ jQuery(function($){
       "click    .destroy":             "destroy",
       "dblclick .view":                "edit",
       "keypress input[type=text]":     "blurOnEnter",
-      "blur     input[type=text]":     "close"
+      "blur     input[type=text]":     "close",
+	  "click 	.clicks":              "viewclicks"
     },
     
     elements: {
@@ -122,6 +122,11 @@ jQuery(function($){
     destroy: function(){
       this.item.destroy();
     },
+
+	viewclicks: function(){
+		this.navigate("/ui", 'dashboard/' + this.el.index());  
+		//then follow render
+	},
     
     edit: function(){
       this.wrapper.addClass("editing");
@@ -219,6 +224,7 @@ jQuery(function($){
 			
 	        <span>${name}</span> 
 			<span class="original">${original}</span>
+			<a class="clicks">Clicks data</a>
 			<a class="destroy"></a>
 	      </div>
 

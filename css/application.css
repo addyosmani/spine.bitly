@@ -94,6 +94,10 @@ body {
 #tasks .item.editing .edit { display: block; }
 #tasks .item.editing .view { display: none; }
 #tasks .item .original { clear:both; font-size:11px;}
+#tasks .item .clicks { font-size: 10px;  display: none;position: absolute; right: 35px; top: 16px; cursor:pointer; background-color:#ffcccc;}
+#tasks .item:hover .clicks{
+	display:block;
+}
 
 #tasks footer {
   display: block;
