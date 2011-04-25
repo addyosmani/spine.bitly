@@ -6,13 +6,15 @@ Spine.Model.Local = {
     
   saveLocal: function(){
     var result = JSON.stringify(this);
-    localStorage[this.name] = result;
+    //localStorage[this.name] = result;
+	store.set(this.name, result);
   },
 
   loadLocal: function(){
-    var result = localStorage[this.name];
+    //var result = localStorage[this.name];
+    var result = store.get(this.name);
     if ( !result ) return;
-    var result = JSON.parse(result);
+	var result = JSON.parse(result);
     this.refresh(result);
   }
 };
