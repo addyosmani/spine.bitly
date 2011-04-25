@@ -14,53 +14,11 @@
 
 	<link rel="stylesheet" type="text/css" href="css/application.css"/>
 
-
-  <script type="text/javascript" charset="utf-8">
-    var Users = Spine.Controller.create({
-      init: function(){
-        this.navigate("/ui", 'dashboard');  
-      },
-      
-      active: function(viewName){
-        console.log("active", viewName)  
-      }
-    });
-    
-    // Fire event on load
-    Spine.Route.setup();
-        
-    // Add routes in App controller
-    var App = Spine.Controller.create({
-      init: function(){
-        this.users = Users.init();
-        this.routes({
-          "/ui/:viewName": function(viewName){
-            this.users.active(viewName);
-          },
-          "/step/*glob": function(any){
-          }
-        });
-      }
-    }).init();
-    
-    // Add routes manually
-    
-    // Add a group of routes
-    Spine.Route.add({
-      "/groups/:id": function(id){
-      }
-    });
-    
-    // More generic routes added last
-    
-    // Use your own regex
-    Spine.Route.add(/\/groups(\/)?/, function(){
-    });
-  </script>
-
 <script type="text/javascript">
 // Create the Task model.
 var Task = Spine.Model.setup("Task", ["name", "done", "original"]);
+
+Spine.Route.setup();
 
 // Persist model between page reloads.
 Task.extend(Spine.Model.Local);
@@ -107,6 +65,7 @@ jQuery(function($){
     init: function(){
       this.item.bind("update",  this.render);
       this.item.bind("destroy", this.remove);
+      this.navigate("/ui", 'dashboard');   ////
     },
     
     render: function(){
@@ -126,7 +85,7 @@ jQuery(function($){
     },
 
 	viewclicks: function(){
-	  this.navigate("/ui", 'clicks/' + this.el.index());  
+	  this.navigate("/ui", 'clicks/' + this.el.index() + "/");  
 	  var elements = $("#clicksTemplate").tmpl(this.item);
       this.el.html(elements);
 	  this.el.bitlyDFD({utility:'clicks', shortUrl:this.item.name});  //test
@@ -215,7 +174,22 @@ jQuery(function($){
   });
   
   window.App = TaskApp.init();
+//
+window.App.routes({
+
+  "/ui/clicks/:num": function(num){
+    console.log("/pages/", num);
+  },
+  "/ui/clicks/:num/": function(num){
+  	console.log("clicks");
+  }
+
+
 });
+//
+});
+
+
 
 
 </script>
