@@ -65,7 +65,7 @@ jQuery(function($){
     init: function(){
       this.item.bind("update",  this.render);
       this.item.bind("destroy", this.remove);
-      this.navigate("/ui", 'dashboard');   ////
+      //this.navigate("/ui", 'dashboard');   ////
     },
     
     render: function(){
@@ -85,7 +85,7 @@ jQuery(function($){
     },
 
 	viewclicks: function(){
-	  this.navigate("/ui", 'clicks/' + this.el.index() + "/");  
+	  //this.navigate("/ui", 'clicks/' + this.el.index() + "/");  
 	  var elements = $("#clicksTemplate").tmpl(this.item);
       this.el.html(elements);
 	  this.el.bitlyDFD({utility:'clicks', shortUrl:this.item.name});  //test
@@ -134,6 +134,18 @@ jQuery(function($){
       Task.bind("refresh", this.addAll);
       Task.bind("refresh change", this.renderCount);
       Task.fetch();
+//
+this.routes({
+      "/ui/clicks/:id": function(id){
+        // Activate controller or something
+        console.log("/ui/clicks/", id)
+      },
+	 "" : function(){
+		console.log('catchall');
+	
+	}
+});
+
     },
     
     addOne: function(task) {
@@ -204,7 +216,7 @@ window.App.routes({
 			
 	        <span>${name}</span> 
 			<span class="original">${original}</span>
-			<a class="clicks">Click Statistics</a>
+			<a class="clicks" href="#/ui/clicks/${id}">Click Statistics</a>
 			<a class="destroy"></a>
 	      </div>
 
