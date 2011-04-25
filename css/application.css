@@ -157,3 +157,8 @@ body {
 #tasks .count span {
   font-weight: bold;
 }
+
+.bitly-summary span{
+	clear:both;
+	display:block;
+}

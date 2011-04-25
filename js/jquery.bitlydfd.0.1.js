@@ -50,12 +50,9 @@ $.fn.bitlyDFD = function( options ) {
                    
             case 'clicks':
                 return collection.each(function() {
-                    //refactor or remove.
                      $(this).append("<div class='bitly-summary'>" +
-                       "<span>Global Clicks (this URL):" + result.data["clicks"][0].global_clicks + "</span>" +
-                       "<span>User Clicks (this URL):" + result.data["clicks"][0].user_clicks + "</span>" +
-                       "<span>Global Clicks (all URLs):" + result.data["clicks"][1].global_clicks + "</span>" + 
-                       "<span>User Clicks (all URLs):" + result.data["clicks"][1].user_clicks + "</span>" +
+ 					   "<span><strong>User Clicks (all URLs): </strong>" + result.data["clicks"][1].user_clicks + "</span>" +
+					   "<span><strong>Global Clicks (Aggregated): </strong>" + result.data["clicks"][1].global_clicks + "</span>" +
                     "</div>");
                     });
                break;     
@@ -69,13 +66,3 @@ $.fn.bitlyDFD = function( options ) {
 	);
 };
 
-
-/*Usage*/
-/*
-function test( longUrl , shortUrl ){
-    console.log(longUrl);
-    ////Task.create({name: result.results[defaults.longUrl].shortUrl, original:opts.longUrl});
-}
-//$('#short').bitlyDFD({utility:'shorten', longUrl:'http://google.com', callback:test});
-//$('#short').bitlyDFD({utility:'clicks', shortUrl:'http://bit.ly/eUGBef'});
-*/

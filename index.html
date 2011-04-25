@@ -124,8 +124,12 @@ jQuery(function($){
     },
 
 	viewclicks: function(){
-		this.navigate("/ui", 'dashboard/' + this.el.index());  
-		//then follow render
+	  this.navigate("/ui", 'clicks/' + this.el.index());  
+	  var elements = $("#clicksTemplate").tmpl(this.item);
+      this.el.html(elements);
+	  this.el.bitlyDFD({utility:'clicks', shortUrl:this.item.name});  //test
+      this.refreshElements();
+      return this;
 	},
     
     edit: function(){
@@ -224,7 +228,7 @@ jQuery(function($){
 			
 	        <span>${name}</span> 
 			<span class="original">${original}</span>
-			<a class="clicks">Clicks data</a>
+			<a class="clicks">Click Statistics</a>
 			<a class="destroy"></a>
 	      </div>
 
@@ -233,6 +237,14 @@ jQuery(function($){
 	      </div>
 	    </div>
 	  </script>
+	
+	<script type="text/x-jquery-tmpl" id="clicksTemplate">
+		<div class="clicksView">
+		 <h2>Click Statistics</h2>
+			<span><strong>Short URL: </strong> ${name}</span>
+			<div class="clicksInfo"></div>
+		</div>
+	</script>
 
 
 
