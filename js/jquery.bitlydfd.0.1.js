@@ -12,17 +12,17 @@ $.fn.bitlyDFD = function( options ) {
     login:      'legacye',
     apiKey:     'R_32f60d09cccde1f266bcba8c242bfb5a',
     history:    '0',
-    longUrl:  '',
-    utility: 'shorten',
-    callback: function(){}
+    longUrl:  	'',
+    utility: 	'shorten',
+    callback: 	function(){}
   };   
     
- var args = arguments, 
-     opts = $.extend(defaults,options), 
+ var args 		= arguments, 
+     opts 		= $.extend( defaults , options ), 
      collection = this, 
-     result = "",
-     queryUrl = "",
-     params   = "version="+opts.version
+     result 	= "",
+     queryUrl 	= "",
+     params   	= "version="+opts.version
                     +"&longUrl="+opts.longUrl
                     +"&login="+opts.login
                     +"&apiKey="+opts.apiKey
@@ -34,10 +34,8 @@ $.fn.bitlyDFD = function( options ) {
     (opts.utility=='shorten')? 
         (queryUrl = "http://api.bit.ly/shorten?" + params) : 
         (queryUrl = "http://api.bitly.com/v3/clicks?" + params);
-   
-    console.log(queryUrl);
-    
-    $.getJSON(queryUrl, function(data){
+       
+    $.getJSON(queryUrl, function( data ){
             result = data;
     })
     .then(
@@ -66,16 +64,15 @@ $.fn.bitlyDFD = function( options ) {
     },
     function(){
          return collection.each(function() {
-            alert('There was an error connecting to the Bit.ly API')
+            ///('There was an error connecting to the Bit.ly API')
         });
     }
-);
-
+	);
 };
 
 
 /*Usage*/
-function test(longUrl,shortUrl){
+function test( longUrl , shortUrl ){
     console.log(longUrl);
 }
 $('#short').bitlyDFD({utility:'shorten', longUrl:'http://google.com', callback:test});
