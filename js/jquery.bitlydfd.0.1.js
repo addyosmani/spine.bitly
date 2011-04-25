@@ -45,7 +45,6 @@ $.fn.bitlyDFD = function( options ) {
                 //collection.html(result.results[defaults.longUrl].shortUrl);
                 return collection.each(function() {
                     opts.callback(result.results[defaults.longUrl].shortUrl, opts.longUrl);
-                    //Task.create({name: result.results[defaults.longUrl].shortUrl, original:opts.longUrl});
                 });
                break;
                    
@@ -72,8 +71,11 @@ $.fn.bitlyDFD = function( options ) {
 
 
 /*Usage*/
+/*
 function test( longUrl , shortUrl ){
     console.log(longUrl);
+    ////Task.create({name: result.results[defaults.longUrl].shortUrl, original:opts.longUrl});
 }
-$('#short').bitlyDFD({utility:'shorten', longUrl:'http://google.com', callback:test});
+//$('#short').bitlyDFD({utility:'shorten', longUrl:'http://google.com', callback:test});
 //$('#short').bitlyDFD({utility:'clicks', shortUrl:'http://bit.ly/eUGBef'});
+*/

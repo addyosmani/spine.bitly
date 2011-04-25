@@ -7,7 +7,7 @@
 	<script src="js/spine.tmpl.js" type="text/javascript" charset="utf-8"></script>
   	<script src="js/spine.min.js" type="text/javascript" charset="utf-8"></script>
   	<script src="js/spine.route.js" type="text/javascript" charset="utf-8"></script>
-  	<script src="js/jquery.bitlydfd.js" type="text/javascript"></script>
+  	<script src="js/jquery.bitlydfd.0.1.js" type="text/javascript"></script>
 	<script src="js/spine.model.local.js" type="text/javascript" charset="utf-8"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/application.css"/>
@@ -178,7 +178,14 @@ jQuery(function($){
         
     create: function(){
 	  var q = this.input;
-	  q.bitlyShorten({longUrl:this.input.val()});
+	  q.bitlyDFD({utility:'shorten', 
+				   longUrl:this.input.val(), 
+					callback:function(s,l){
+					Task.create({name: s, original:l}
+				 );
+			}
+		});
+
       this.input.val("");
       return false;
     },
@@ -234,11 +241,10 @@ jQuery(function($){
 
 	      <div class="items"></div>
 	      <footer>
-	        <a class="clear">Clear completed</a>
+	        <a class="clear">Clear entries</a>
 	      </footer>
 	    </div>
 	  </div>
 	
-http://jsfiddle.net/addyosmani/nn7U6/2/
 </body>
 </html>
