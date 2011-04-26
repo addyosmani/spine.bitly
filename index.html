@@ -11,6 +11,7 @@
   	<script src="js/store.min.js" type="text/javascript" charset="utf-8"></script>
   	<script src="js/jquery.bitlydfd.0.1.js" type="text/javascript"></script>
 	<script src="js/spine.model.local.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/spine.controller.manager.js" type="text/javascript"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/application.css"/>
 
@@ -20,21 +21,17 @@ var Task = Spine.Model.setup("Task", ["name", "done", "original"]);
 
 Spine.Route.setup();
 
-// Persist model between page reloads.
 Task.extend(Spine.Model.Local);
 
 Task.extend({
-  // Return all active tasks.
   active: function(){
     return(this.select(function(item){ return !item.done; }));
   },
   
-  // Return all done tasks.
   done: function(){
     return(this.select(function(item){ return !!item.done; }));    
   },
   
-  // Clear all done tasks.
   destroyDone: function(){
     this.done().forEach(function(rec){ rec.destroy() });
   }
@@ -65,8 +62,8 @@ jQuery(function($){
     init: function(){
       this.item.bind("update",  this.render);
       this.item.bind("destroy", this.remove);
-      //this.navigate("/ui", 'dashboard');   ////
     },
+
     
     render: function(){
       var elements = $("#taskTemplate").tmpl(this.item);
@@ -77,7 +74,7 @@ jQuery(function($){
     
     toggle: function(){
       this.item.done = !this.item.done;
-      this.item.save();      
+      this.item.save();     
     },
     
     destroy: function(){
@@ -85,11 +82,12 @@ jQuery(function($){
     },
 
 	viewclicks: function(){
-	  //this.navigate("/ui", 'clicks/' + this.el.index() + "/");  
-	  var elements = $("#clicksTemplate").tmpl(this.item);
-      this.el.html(elements);
-	  this.el.bitlyDFD({utility:'clicks', shortUrl:this.item.name});  //test
-      this.refreshElements();
+	 $('.items').hide();
+ 	var elements = $("#clicksTemplate").tmpl(this.item);
+  	$('#tasks').append(elements);
+  	$('#tasks .clicksView').bitlyDFD({utility:'clicks', shortUrl:this.item.name}); 
+  	this.refreshElements();
+
       return this;
 	},
     
@@ -134,17 +132,18 @@ jQuery(function($){
       Task.bind("refresh", this.addAll);
       Task.bind("refresh change", this.renderCount);
       Task.fetch();
-//
-this.routes({
-      "/ui/clicks/:id": function(id){
-        // Activate controller or something
-        console.log("/ui/clicks/", id)
-      },
-	 "" : function(){
-		console.log('catchall');
 	
-	}
-});
+		this.routes({
+	      "/ui/clicks/:id": function(id){
+	        //console.log("/ui/clicks/", id)
+	
+	      },
+		 "" : function(){
+			console.log('catchall');
+			$('.items').show();
+			$('.clicksView').remove();
+		}
+	});
 
     },
     
@@ -179,30 +178,15 @@ this.routes({
     renderCount: function(){
       var active = Task.active().length;
       this.count.text(active);
-      
       var inactive = Task.done().length;
       this.clear[inactive ? "show" : "hide"]();
     }
   });
   
   window.App = TaskApp.init();
-//
-window.App.routes({
-
-  "/ui/clicks/:num": function(num){
-    console.log("/pages/", num);
-  },
-  "/ui/clicks/:num/": function(num){
-  	console.log("clicks");
-  }
-
+ 
 
 });
-//
-});
-
-
-
 
 </script>
 </head>
@@ -229,8 +213,10 @@ window.App.routes({
 	<script type="text/x-jquery-tmpl" id="clicksTemplate">
 		<div class="clicksView">
 		 <h2>Click Statistics</h2>
-			<span><strong>Short URL: </strong> ${name} (<a href="index.html">Edit Mode</a>)</span>
+			<span><strong>Short URL: </strong> <a href="${name}">${name}</a> (<a href="#">Edit Mode</a>)</span><br>
+			<span><strong>Original URL: </strong> <a href="${original}">${original}</a></span>
 			<div class="clicksInfo"></div>
+		
 		</div>
 	</script>
 
