@@ -7,12 +7,11 @@
   <script src="lib/jquery.js" type="text/javascript" charset="utf-8"></script>
   <script src="lib/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
   <script src="lib/jquery.bitly.js" type="text/javascript" charset="utf-8"></script>
-
+  <script src="lib/store.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="lib/spine.js" type="text/javascript" charset="utf-8"></script>
   <script src="lib/spine.model.local.js" type="text/javascript" charset="utf-8"></script>
   <script src="lib/spine.controller.manager.js" type="text/javascript" charset="utf-8"></script>
   <script src="lib/spine.route.js" type="text/javascript" charset="utf-8"></script>
-
   <script src="app/models/url.js" type="text/javascript" charset="utf-8"></script>
   <script src="app/application.js" type="text/javascript" charset="utf-8"></script>
   
@@ -41,15 +40,16 @@
     <div class="stats">
       <a class="back">Back</a>
     
-      <h1>${long_url}</h1>
+      <h1>Click Statistics</h1>
+      <h1 class="longUrl">${long_url}</h1>
       
-      <h2 class="short">
+      <p>Short URL: 
         {{if short_url}}
           <a href="${short_url}">${short_url}</a>
         {{else}}
           Generating...
         {{/if}}
-      </h2>
+      </p>
     
       {{if stats}}
         <p>Global clicks: ${stats.global_clicks}</p>
@@ -63,7 +63,7 @@
 <body>
   <div id="views">
     <div id="urls">
-      <h1>Bitly Generator</h1>
+      <h1>Bit.ly Client</h1>
       
       <form>
         <input type="text" placeholder="Enter a URL">
