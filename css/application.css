@@ -27,7 +27,7 @@ h1 {
 
 #views {
   width: 520px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 20px auto;
   background: white;
   
   -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
@@ -124,4 +124,10 @@ h1 {
 
 .longUrl{
   font-size:13px;
+}
+
+.footer{
+  text-align:center;
+  margin:0 auto;
+  width:600px;
 }
