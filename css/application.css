@@ -11,6 +11,20 @@ body {
   color: #333333;
 }
 
+a {
+  color: #261A3B;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 0 10px 0;
+}
+
 #views {
   width: 520px;
   margin: 0 auto 40px auto;
@@ -27,18 +41,15 @@ body {
   border-radius: 0 0 5px 5px;
 }
 
-#tasks {
+#views > *:not(.active) {
+  display: none;
+}
+
+#urls, #stats {
   padding: 20px;
 }
 
-#tasks h1 {
-  font-size: 36px;
-  font-weight: bold;
-  text-align: center;
-  padding: 0 0 10px 0;
-}
-
-#tasks input[type="text"] {
+#urls input[type="text"] {
   width: 466px;
   font-size: 24px;
   font-family: inherit;
@@ -54,28 +65,23 @@ body {
   box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
 }
 
-#tasks input::-webkit-input-placeholder {
+#urls input::-webkit-input-placeholder {
   font-style: italic;
 }
 
-#tasks .items {
+#urls .items {
   margin: 10px 0;
   list-style: none;
 }
 
-#tasks .item {
+#urls .item {
   padding: 15px 20px 15px 0;
   position: relative;
   font-size: 24px;
   border-bottom: 1px solid #cccccc;
 }
 
-#tasks .item.done span {
-  color: #777777;
-  text-decoration: line-through;
-}
-
-#tasks .item .destroy {
+#urls .item .destroy {
   position: absolute;
   right: 10px;
   top: 16px;
@@ -83,82 +89,28 @@ body {
   cursor: pointer;
   width: 20px;
   height: 20px;
-  background: url(../img/destroy.png) no-repeat center center;
+  background: url(../images/destroy.png) no-repeat center center;
 }
 
-#tasks .item:hover .destroy {
+#urls .item:hover .destroy {
   display: block;
 }
 
-#tasks .item .edit { display: none; }
-#tasks .item.editing .edit { display: block; }
-#tasks .item.editing .view { display: none; }
-#tasks .item .original { clear:both; font-size:11px;}
-#tasks .item .clicks { font-size: 10px;  display: none;position: absolute; right: 35px; top: 16px; cursor:pointer; background-color:#ffcccc;}
-#tasks .item:hover .clicks{
-	display:block;
-}
-
-#tasks footer {
-  display: block;
-  margin: 20px -20px -20px -20px;
-  overflow: hidden;
-  
-  color: #555555;
-  background: #f4fce8;
-  border-top: 1px solid #ededed;
-  padding: 0 20px;
-  line-height: 36px;
-  
-  -moz-border-radius: 0 0 5px 5px;
-  -o-border-radius: 0 0 5px 5px;
-  -webkit-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px;
-}
-
-#tasks .clear {
-  display: block;
-  float: right;
-  line-height: 20px;
-  text-decoration: none;
-  
-  background: rgba(0, 0, 0, 0.1);
-  color: #555555;
-  font-size: 11px;
-  margin-top: 8px;
-  padding: 0 10px 1px;
-  
-  -moz-border-radius: 12px;
-  -webkit-border-radius: 12px;
-  -o-border-radius: 12px;
-  border-radius: 12px;
-  
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
-  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0; 
-  
+#urls .item .toggleStats {
+  position: absolute;
+  right: 40px;
+  top: 16px;
+  display: none;
   cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background: url(../images/destroy.png) no-repeat center center;
 }
 
-#tasks .clear:hover {
-  background: rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
-  -o-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
-  box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
+#urls .item:hover .toggleStats {
+  display: block;
 }
 
-#tasks .clear:active {
-  position: relative;
-  top: 1px;
-}
-
-#tasks .count span {
-  font-weight: bold;
-}
-
-.bitly-summary span{
-	clear:both;
-	display:block;
+#urls .item .stats {
+  display: none;
 }
