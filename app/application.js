@@ -27,7 +27,7 @@ jQuery(function($){
     },
     
     render: function(){
-      this.el.html(this.template(this.item.reload()));
+      this.el.html(this.template(this.item));
       return this;
     },
     
@@ -100,7 +100,7 @@ jQuery(function($){
     
     render: function(){
       if ( !this.item ) return;
-      this.el.html(this.template(this.item.reload()));
+      this.el.html(this.template(this.item));
     },
     
     change: function(item){
