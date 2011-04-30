@@ -114,7 +114,7 @@ jQuery(function($){
     back: function(){
       this.navigate("/list", true);
     }
-  })
+  });
   
   exports.UrlApp = Spine.Controller.create({
     el: $("body"),
