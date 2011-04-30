@@ -92,6 +92,7 @@ h1 {
   background: url(../images/destroy.png) no-repeat center center;
 }
 
+
 #urls .item:hover .destroy {
   display: block;
 }
@@ -111,6 +112,12 @@ h1 {
   display: block;
 }
 
+#urls .item .iconPanel{
+  background-color:#fff;
+  width:200px;
+  height:80px;
+}
+
 #urls .item .stats {
   display: none;
 }
@@ -123,11 +130,23 @@ h1 {
 }
 
 .longUrl{
-  font-size:13px;
+    font-size: 13px;
+    text-align: center;
+    display:block;
+    word-wrap: break-word
 }
 
 .footer{
   text-align:center;
   margin:0 auto;
   width:600px;
+}
+
+#urls .item .short{
+    display: block;
+    max-height: 60px;
+    min-height: 23px;
+    overflow: hidden;
+    width: 420px;
+    word-wrap: break-word
 }
