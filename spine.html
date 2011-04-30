@@ -5,11 +5,11 @@
 <p>To give you a quick summary on Backbone, which will help us compare it with Spine: data in it is represented through <em>models</em> (which can be created, destroyed and saved). Changes to the front-end/UI trigger a model to change and all of the <em>views</em> in your application that display the model's data are notified of the event, causing them to re-render. It is also quite agnostic in the JavaScript libraries it can be used with and is regularly combined with jQuery or zepto for DOM interaction.</p>
 <p>The benefit tools like Spine and Backbone bring to the table is that the 'backbone' to your application's structure is all taken care of for you meaning that you can focus on improving the overall logic with your time. </p>
 <p>For more on Backbone, feel free to read my article '<a href="http://addyosmani.com/blog/building-spas-jquerys-best-friends/">Building Single Page Applications with jQuery's Best Friends</a>' or check-out some of the excellent resources on their new wiki for more information.</p>
-<p>Let us know look at <a href="http://maccman.github.com/spine/">Spine.js</a> - a new alternative to Backbone that's been getting quite a lot of interest lately.</p>
+<p>Let us now look at <a href="http://maccman.github.com/spine/">Spine.js</a> - a new alternative to Backbone that's been getting quite a lot of interest lately.</p>
 <p>&nbsp;</p>
 <h1>An Introduction to Spine.js</h1>
 <h3><strong>Back-story</strong></h3>
-<p>A few months ago, I was approached by a rather passionate developer named Alex MacCaw to help provide guideance for a modern JaveScript web applications book he was working on. Much of the focus of the book ended up being on MVC and dependancy management (both of which really need a solid title on) but as it turns out, he ended up investing lot of the lessons he learned into creating<strong> Spine.js </strong>- a lightweight framework for building JavaScript web applications. </p>
+<p>A few months ago, I was approached by a rather passionate developer named Alex MacCaw to help provide guideance for a modern JaveScript web applications book he was working on. Much of the focus of the book ended up being on MVC and dependancy management (both of which really need a solid title on) but as it turns out, he ended up investing lot of the lessons he learned into creating<strong> Spine.js </strong>- a lightweight framework for building JavaScript web applications.</p>
 <p>When Spine was first released, it received quite a number of <a href="http://news.ycombinator.com/item?id=2459143">mixed reviews</a>, however I believe in giving every new solution deserves a fair evaluation, which is why I wanted to write this post on Spine to answer questions that both I and other developers had about it. </p>
 <h3><strong>So, what is Spine.js?</strong></h3>
 <p>Spine is a lightweight framework that provides an MVC structure to your JavaScript applications with a focus on providing a more traditional literal inheritence model through classes and extension. It's based in many ways on Backbone's API so developers who have used Backbone before may find getting started a little easier than expected (however see the notes below for some fundamental differences). Spine also comes with baked in support for HTML5 localStorage and asynchronous server communication. </p>
@@ -241,10 +241,14 @@ Alex was kind enough to refactor the app to follow some of Spine's best practice
   <li> A controller to represent the view for click statistics of a given entry (exports.Stats)</li>
   <li> A generic application controller that will amongst other things, handle general routing (exports.UrlApp)</li>
 </ul>
-<p>We've opted to use jQuery in today's tutorial application as we're using it for both templating and plugin structure, however, Spine works just as well with zepto or vanilla JavaScript. Let's now take a look at the code for our app:</p>
-<p><strong>Initial caching and a simple jQuery plugin for toggling the display of content</strong></p>
+<p>We've opted to use <a href="http://jquery.com">jQuery</a> in today's tutorial application as we're using it for both templating and plugin structure, however, Spine works just as well with <a href="http://zeptojs.com/">Zepto</a> or vanilla JavaScript. Let's now take a look at the code for our app:</p>
+<p><strong>Initial caching </strong></p>
 <pre>
 var exports = this;
+</pre>
+<p>&nbsp;</p>
+<p><strong>Simple jQuery plugin for toggling the display of content</strong></p>
+<pre>
 $.fn.toggleDisplay = function(bool){
     if ( typeof bool == "undefined" ) {
       bool = !$(this).filter(":first:visible")[0];
