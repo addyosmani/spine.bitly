@@ -49,7 +49,9 @@
     
       <h1>Click Statistics</h1>
       <h1 class="longUrl">${long_url}</h1>
-      
+      {{if stats}}
+		<img class="gchart"  src="http://chart.apis.google.com/chart?chs=350x250&cht=p&chd=t:${stats.global_clicks},${stats.user_clicks}&chdl=Global+clicks|User+clicks&chtt=Global+vs.+User+Clicks" width="350" height="250" alt="Global vs. User Clicks" />
+	  {{/if}}
       <p>Short URL: 
         {{if short_url}}
           <a href="${short_url}">${short_url}</a>
